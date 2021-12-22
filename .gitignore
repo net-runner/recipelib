@@ -1,0 +1,26 @@
+/node_modules/
+/public/build/
+/bin/
+/obj/
+/wwwroot/
+.vscode
+
+.DS_Store
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates

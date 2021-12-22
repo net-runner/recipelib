@@ -2,7 +2,7 @@
 /public/build/
 /bin/
 /obj/
-/wwwroot/
+/wwwroot/build
 .vscode
 
 .DS_Store

@@ -20,7 +20,7 @@ function serve() {
 		writeBundle() {
 			if (server) return;
 			server = require('child_process').spawn('dotnet', ['watch', 'run'], {
-				stdio: ['ignore', 'inherit', 'inherit'],
+				stdio: ['inherit', 'inherit', 'inherit'],
 				shell: true
 			});
 

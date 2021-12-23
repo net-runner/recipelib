@@ -1,27 +1,20 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
 
-
-if (app.Environment.IsDevelopment())
+namespace RecipeLib
 {
-    app.UseDeveloperExceptionPage();
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .UseDefaultServiceProvider(options => options.ValidateScopes = false)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
 }
-else
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-    app.UseHttpsRedirection();
-}
 
-app.UseDefaultFiles();
-app.UseStaticFiles();
-
-
-app.UseRouting();
-
-app.UseSession();
-
-app.UseAuthentication();
-
-app.Run();

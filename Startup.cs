@@ -22,6 +22,7 @@ namespace RecipeLib
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<AppDbContext>();
             services.AddIdentity<IdentityUser, IdentityRole>()
@@ -51,21 +52,21 @@ namespace RecipeLib
                 app.UseHsts();
                 app.UseHttpsRedirection();
             }
+            // app.UseDefaultFiles();
             app.UseStaticFiles();
 
 
             app.UseRouting();
 
-            // app.UseSession();
+            app.UseSession();
 
             // app.UseAuthentication();
-            // app.UseAuthorization();
+            app.UseAuthorization();
 
-            // app.UseEndpoints(endpoints =>
-            // {
-            //     endpoints.MapDefaultControllerRoute();
-            // });
-
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapDefaultControllerRoute();
+            });
 
             // IdentitySeedData.EnsurePopulated(app);
             // app.Run((context) =>

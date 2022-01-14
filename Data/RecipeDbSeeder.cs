@@ -8,70 +8,65 @@ public class RecipeAppSeeder
     private readonly AppDbContext _dbContext;
     private readonly IPasswordHasher<User> passwordHasher;
 
-    public RecipeAppSeeder(AppDbContext dbContext, IPasswordHasher<User> passwordHasher)
+    private readonly UserManager<User> _userManager;
+    private readonly RoleManager<Role> _roleManager;
+
+    public RecipeAppSeeder(AppDbContext dbContext, IPasswordHasher<User> passwordHasher, UserManager<User> userManager, RoleManager<Role> roleManager)
     {
         _dbContext = dbContext;
         this.passwordHasher = passwordHasher;
+        _userManager = userManager;
+        _roleManager = roleManager;
     }
 
-    public void CreateInitialData()
+    public async void CreateInitialData()
     {
         if (_dbContext.Database.CanConnect())
         {
             //Create initial roles
+
             if (!_dbContext.Roles.Any())
             {
-                _dbContext.Roles.AddRange(InitialRoles());
-                _dbContext.SaveChanges();
+                await CreateRoles();
             }
             //Create initial users
             if (!_dbContext.Users.Any())
             {
-                _dbContext.Users.AddRange(InitialUsers());
-                _dbContext.SaveChanges();
+                await CreateUsers();
             }
-
 
         }
     }
 
-    private IEnumerable<Role> InitialRoles() => new List<Role>(){
-        new Role(){
-            Name = "Administrator"
-        },
-        new Role(){
-            Name = "User"
-        },
-        new Role(){
-            Name = "Recipe Master"
-        },
-    };
-    private IEnumerable<User> InitialUsers()
+    private async Task CreateRoles()
+    {
+        await _roleManager.CreateAsync(new Role() { Name = "Administrator" });
+        await _roleManager.CreateAsync(new Role() { Name = "User" });
+        await _roleManager.CreateAsync(new Role() { Name = "RecipeMaster" });
+
+    }
+    private async Task CreateUsers()
     {
         User u1, u2, u3;
         u1 = new User()
         {
-            Nickname = "Guest",
+            UserName = "Guest",
             Email = "guest@guest.guest",
-            RoleId = 2
         };
         u2 = new User()
         {
-            Nickname = "Adam",
+            UserName = "Adam",
             Email = "adam@theadmin.recipedb",
-            RoleId = 1
 
         };
         u3 = new User()
         {
-            Nickname = "Kuchta",
+            UserName = "Kuchta",
             Email = "kuchta@kuchta.kuchta",
-            RoleId = 3
         };
-        u1.PasswordHash = passwordHasher.HashPassword(u1, "zaq1@WSX");
-        u2.PasswordHash = passwordHasher.HashPassword(u2, "zaq1@WSX");
-        u3.PasswordHash = passwordHasher.HashPassword(u3, "zaq1@WSX");
-        List<User> users = new List<User>() { u1, u2, u3 };
-        return users;
+
+        await _userManager.CreateAsync(u1, "zaq1@WSX");
+        await _userManager.CreateAsync(u2, "zaq1@WSX");
+        await _userManager.CreateAsync(u3, "zaq1@WSX");
     }
 }

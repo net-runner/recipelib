@@ -25,16 +25,15 @@ namespace RecipeLib
 
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<AppDbContext>();
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
-            services.AddScoped<RecipeAppSeeder>();
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddSingleton<RecipeAppSeeder>();
             services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
             services.AddMemoryCache();
             services.AddSession();
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +64,8 @@ namespace RecipeLib
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
 
         }

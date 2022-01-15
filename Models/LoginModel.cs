@@ -55,6 +55,7 @@ public class LoginModel
         /// </summary>
         [Required]
         [EmailAddress]
+        [Remote("EmailExists", "Account", HttpMethod = "POST", ErrorMessage = "Email address already registered.")]
         public string Email { get; set; }
 
         /// <summary>
@@ -63,6 +64,7 @@ public class LoginModel
         /// </summary>
         [Required]
         [DataType(DataType.Password)]
+        [Remote("UsernameExists", "Account", HttpMethod = "POST", ErrorMessage = "User name already registered.")]
         public string Password { get; set; }
 
         /// <summary>

@@ -86,7 +86,11 @@ public class AccountController : Controller
 
         return Ok();
     }
-
+    public IActionResult Logout()
+    {
+        _signInManager.SignOutAsync();
+        return LocalRedirect("/");
+    }
 
 
     public async Task<JsonResult> UsernameExists(string username, CancellationToken cancellationToken)

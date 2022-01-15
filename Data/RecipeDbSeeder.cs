@@ -68,5 +68,8 @@ public class RecipeAppSeeder
         await _userManager.CreateAsync(u1, "zaq1@WSX");
         await _userManager.CreateAsync(u2, "zaq1@WSX");
         await _userManager.CreateAsync(u3, "zaq1@WSX");
+        await _userManager.AddToRoleAsync(u1, "User");
+        await _userManager.AddToRoleAsync(u2, "Administrator");
+        await _userManager.AddToRoleAsync(u3, "RecipeMaster");
     }
 }

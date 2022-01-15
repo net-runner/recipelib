@@ -7,7 +7,6 @@ namespace RecipeLib.Services;
 public interface IAccountService
 {
     void RegisterUser(RegisterModel dto);
-    Task<SignInResult> LoginUser(LoginModel.InputModel dto);
 }
 public class AccountService : IAccountService
 {
@@ -46,23 +45,5 @@ public class AccountService : IAccountService
         _dbContext.SaveChanges();
     }
 
-    public async Task<SignInResult> LoginUser(LoginModel.InputModel dto)
-    {
-        var user = _dbContext.Users.FirstOrDefault(u => u.Email == dto.Email);
-
-        if (user is null)
-        {
-            throw new BadHttpRequestException("Invalid username or password");
-        }
-
-        var checkPasswd = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
-
-        if (checkPasswd == PasswordVerificationResult.Failed)
-        {
-            throw new BadHttpRequestException("Invalid username or password");
-        }
-        var result = await _signInManager.PasswordSignInAsync(dto.Email, dto.Password, dto.RememberMe, lockoutOnFailure: false);
-        return result;
-    }
 
 }

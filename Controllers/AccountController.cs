@@ -81,10 +81,24 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public IActionResult LoginUser(LoginModel.InputModel dto)
+    public async Task<IActionResult> LoginUser(LoginModel dto)
     {
-
-        return Ok();
+        _logger.LogInformation("User LogIn post");
+        if (ModelState.IsValid)
+        {
+            var result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, dto.RememberMe, lockoutOnFailure: false);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User logged in.");
+                return LocalRedirect("/");
+            }
+            else
+            {
+                _logger.LogInformation("User login failed.");
+                ModelState.AddModelError(string.Empty, "Invalid username or password");
+            }
+        }
+        return View("Login");
     }
     public IActionResult Logout()
     {

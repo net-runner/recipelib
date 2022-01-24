@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RecipeLib.Entities;
 using RecipeLib.Models;
-using RecipeLib.Services;
 
 namespace RecipeLib.Controllers;
 
@@ -22,10 +21,6 @@ public class AccountController : Controller
     private readonly IUserEmailStore<User> _emailStore;
 
 
-    public string test()
-    {
-        return "Home";
-    }
     public AccountController(ILogger<AccountController> logger, SignInManager<User> signInManager, IUserStore<User> userStore, UserManager<User> userManager, AppDbContext dbContext)
     {
         _logger = logger;
@@ -36,10 +31,6 @@ public class AccountController : Controller
         _dbContext = dbContext;
     }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
     public IActionResult Login()
     {
         return View();
@@ -76,7 +67,6 @@ public class AccountController : Controller
             }
         }
         return View("Register");
-
 
     }
 

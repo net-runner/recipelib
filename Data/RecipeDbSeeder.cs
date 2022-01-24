@@ -28,16 +28,192 @@ public class RecipeAppSeeder
             if (!_dbContext.Roles.Any())
             {
                 await CreateRoles();
+
+                //Create initial users
+                if (!_dbContext.Users.Any())
+                {
+                    await CreateUsers();
+                }
             }
-            //Create initial users
-            if (!_dbContext.Users.Any())
+
+
+            //Create initial recipe categories
+            if (!_dbContext.Categories.Any())
             {
-                await CreateUsers();
+                List<Category> categories = new List<Category>(){
+
+                new Category() { Name = "Breakfast", Id = Guid.NewGuid().ToString() },
+                new Category() { Name = "Main Dishes", Id = Guid.NewGuid().ToString()},
+                new Category() { Name = "Side Dishes", Id = Guid.NewGuid().ToString()},
+                new Category() { Name = "Snacks", Id = Guid.NewGuid().ToString() },
+                new Category() { Name = "Beverages", Id = Guid.NewGuid().ToString() },
+                new Category() { Name = "Desserts", Id = Guid.NewGuid().ToString() },
+
+                };
+                await CreateCategories(categories);
+
+                //Create initial recipes
+                if (!_dbContext.Recipes.Any())
+                {
+                    await CreateRecipes(categories);
+                }
             }
 
         }
     }
+    private async Task CreateRecipes(List<Category> categories)
+    {
+        var InitialAuthor = await _userManager.GetUsersInRoleAsync("Administrator");
 
+        List<Ingredient> DefaultIngredients = new List<Ingredient>(){
+            new Ingredient(){
+                name = "Large Egg",
+                ammount="1"
+            },
+            new Ingredient(){
+                name = "Peanut Butter",
+                ammount="250g"
+            },
+                        new Ingredient(){
+                name = "Erythritol",
+                ammount="50g"
+            },
+        };
+        List<string> DefaultMethod = new List<string>(){
+            "Preheat oven to 180°C",
+            "In a medium bowl combine all ingredients until thoroughly mixed",
+            "Scoop heaping one tablespoon-sized piece of dough into 12-15 balls. Place 2 inches apart on lined cookie sheets and flatten in a criss-cross with a fork",
+            "Bake for 12-15 minutes until edges of cookies are golden brown",
+            "Let cool completely before eating."
+        };
+        List<Recipe> recipes = new List<Recipe>(){
+
+            new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe01",
+                CategoryId = categories[0].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe02",
+                CategoryId = categories[0].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe03",
+                CategoryId = categories[0].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe11",
+                CategoryId = categories[1].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe12",
+                CategoryId = categories[1].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe13",
+                CategoryId = categories[1].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                                    new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe21",
+                CategoryId = categories[2].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe22",
+                CategoryId = categories[2].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe23",
+                CategoryId = categories[2].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                                                new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe31",
+                CategoryId = categories[3].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe32",
+                CategoryId = categories[3].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe33",
+                CategoryId = categories[3].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                                                new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe41",
+                CategoryId = categories[4].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe42",
+                CategoryId = categories[4].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+                        new Recipe(){
+                Id = Guid.NewGuid().ToString(),
+                Name = "Recipe43",
+                CategoryId = categories[4].Id,
+                AuthorId = InitialAuthor[0].Id,
+                Ingredients = DefaultIngredients,
+                Method = DefaultMethod
+            },
+
+        };
+
+        await _dbContext.AddRangeAsync(recipes, CancellationToken.None);
+        await _dbContext.SaveChangesAsync();
+    }
     private async Task CreateRoles()
     {
         await _roleManager.CreateAsync(new Role() { Name = "Administrator" });
@@ -72,4 +248,12 @@ public class RecipeAppSeeder
         await _userManager.AddToRoleAsync(u2, "Administrator");
         await _userManager.AddToRoleAsync(u3, "RecipeMaster");
     }
+
+    private async Task CreateCategories(List<Category> categories)
+    {
+        await _dbContext.AddRangeAsync(categories, CancellationToken.None);
+        await _dbContext.SaveChangesAsync();
+    }
+
+
 }

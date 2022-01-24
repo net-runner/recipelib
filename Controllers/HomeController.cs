@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using RecipeLib.Models;
-using RecipeLib.Services;
 
 namespace RecipeLib.Controllers;
 

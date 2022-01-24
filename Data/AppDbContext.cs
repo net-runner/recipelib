@@ -18,7 +18,6 @@ namespace RecipeLib.Entities
             modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
             modelBuilder.Entity<Role>().HasIndex(u => u.Name).IsUnique();
             modelBuilder.Entity<Category>().HasIndex(u => u.Name).IsUnique();
-            modelBuilder.Ignore<Ingredient>();
             base.OnModelCreating(modelBuilder);
         }
 

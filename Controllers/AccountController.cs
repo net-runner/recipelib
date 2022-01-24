@@ -1,9 +1,11 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RecipeLib.Entities;
 using RecipeLib.Models;
 
 namespace RecipeLib.Controllers;
+
 
 public class AccountController : Controller
 {
@@ -19,9 +21,10 @@ public class AccountController : Controller
     private readonly IUserStore<User> _userStore;
 
     private readonly IUserEmailStore<User> _emailStore;
+    private readonly RoleManager<Role> _roleManager;
 
 
-    public AccountController(ILogger<AccountController> logger, SignInManager<User> signInManager, IUserStore<User> userStore, UserManager<User> userManager, AppDbContext dbContext)
+    public AccountController(ILogger<AccountController> logger, SignInManager<User> signInManager, IUserStore<User> userStore, UserManager<User> userManager, AppDbContext dbContext, RoleManager<Role> roleManager)
     {
         _logger = logger;
         _signInManager = signInManager;
@@ -29,6 +32,7 @@ public class AccountController : Controller
         _userManager = userManager;
         _emailStore = GetEmailStore();
         _dbContext = dbContext;
+        _roleManager = roleManager;
     }
 
     public IActionResult Login()
@@ -52,10 +56,13 @@ public class AccountController : Controller
             var user = new User();
             await _userStore.SetUserNameAsync(user, dto.Username, CancellationToken.None);
             await _emailStore.SetEmailAsync(user, dto.Email, CancellationToken.None);
+
             var result = await _userManager.CreateAsync(user, dto.Password);
 
+            await _userManager.AddToRoleAsync(user, "User");
             if (result.Succeeded)
             {
+
                 _logger.LogInformation("User created a new account with password.");
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 return LocalRedirect("/");

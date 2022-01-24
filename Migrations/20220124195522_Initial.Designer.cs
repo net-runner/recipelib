@@ -12,7 +12,7 @@ using RecipeLib.Entities;
 namespace RecipeLib.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220124183349_Initial")]
+    [Migration("20220124195522_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -156,6 +156,9 @@ namespace RecipeLib.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CategoryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IngredientsSerialized")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MethodSerialized")

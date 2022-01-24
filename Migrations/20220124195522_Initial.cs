@@ -68,7 +68,8 @@ namespace RecipeLib.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AuthorId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MethodSerialized = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    MethodSerialized = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IngredientsSerialized = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

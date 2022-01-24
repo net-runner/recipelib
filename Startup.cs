@@ -3,7 +3,7 @@ using RecipeLib.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RecipeLib.Entities;
-using RecipeLib.Services;
+
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using RecipeLib.Models.Validators;
@@ -26,8 +26,9 @@ namespace RecipeLib
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<AppDbContext>();
             services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<AppDbContext>()
-                .AddDefaultTokenProviders();
+                            .AddDefaultTokenProviders().AddRoles<Role>()
+                .AddEntityFrameworkStores<AppDbContext>();
+
             services.AddSingleton<RecipeAppSeeder>();
             services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
             services.AddMemoryCache();
@@ -50,12 +51,13 @@ namespace RecipeLib
                 app.UseHsts();
                 app.UseHttpsRedirection();
             }
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseRouting();
 
 
 
-            app.UseAuthentication();
+
             app.UseAuthorization();
             app.UseSession();
 

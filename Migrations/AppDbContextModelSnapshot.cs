@@ -156,6 +156,9 @@ namespace RecipeLib.Migrations
                     b.Property<string>("CategoryId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IngredientsSerialized")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("MethodSerialized")
                         .HasColumnType("nvarchar(max)");
 

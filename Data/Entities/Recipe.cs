@@ -8,8 +8,11 @@ public class Recipe
     public string Id { get; set; }
     public string Name { get; set; }
 
+    [ForeignKey("Category")]
     public string CategoryId { get; set; }
 
+
+    [ForeignKey("User")]
     public string AuthorId { get; set; }
 
 
@@ -29,7 +32,21 @@ public class Recipe
     [NotMapped]
     private List<string> _Method;
 
-    public List<Ingredient> Ingredients { get; set; }
+    [NotMapped]
+    public virtual List<Ingredient> Ingredients
+    {
+        get
+        {
+            return _Ingredients;
+        }
+        set
+        {
+            _Ingredients = value;
+        }
+    }
+
+    [NotMapped]
+    private List<Ingredient> _Ingredients { get; set; }
 
     public string MethodSerialized
     {
@@ -40,6 +57,18 @@ public class Recipe
         set
         {
             _Method = JsonConvert.DeserializeObject<List<string>>(value);
+        }
+    }
+
+    public string IngredientsSerialized
+    {
+        get
+        {
+            return JsonConvert.SerializeObject(_Ingredients);
+        }
+        set
+        {
+            _Ingredients = JsonConvert.DeserializeObject<List<Ingredient>>(value);
         }
     }
 }

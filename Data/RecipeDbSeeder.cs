@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using RecipeLib.Entities;
 
@@ -216,14 +217,20 @@ public class RecipeAppSeeder
     }
     private async Task CreateRoles()
     {
-        await _roleManager.CreateAsync(new Role() { Name = "Administrator" });
-        await _roleManager.CreateAsync(new Role() { Name = "User" });
-        await _roleManager.CreateAsync(new Role() { Name = "RecipeMaster" });
+        List<Role> roles = new List<Role>(){
+new Role() { Name = "Administrator" },
+new Role() { Name = "User" },
+new Role() { Name = "RecipeMaster" }
+        };
+        await _roleManager.CreateAsync(roles[0]);
+        await _roleManager.CreateAsync(roles[1]);
+        await _roleManager.CreateAsync(roles[2]);
 
     }
     private async Task CreateUsers()
     {
         User u1, u2, u3;
+        string pass = "zaq1@WSX";
         u1 = new User()
         {
             UserName = "Guest",
@@ -241,9 +248,9 @@ public class RecipeAppSeeder
             Email = "kuchta@kuchta.kuchta",
         };
 
-        await _userManager.CreateAsync(u1, "zaq1@WSX");
-        await _userManager.CreateAsync(u2, "zaq1@WSX");
-        await _userManager.CreateAsync(u3, "zaq1@WSX");
+        await _userManager.CreateAsync(u1, pass);
+        await _userManager.CreateAsync(u2, pass);
+        await _userManager.CreateAsync(u3, pass);
         await _userManager.AddToRoleAsync(u1, "User");
         await _userManager.AddToRoleAsync(u2, "Administrator");
         await _userManager.AddToRoleAsync(u3, "RecipeMaster");

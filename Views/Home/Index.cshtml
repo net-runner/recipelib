@@ -8,7 +8,7 @@
         var user = await UserManager.FindByIdAsync(Model.recipes[i].AuthorId);
         authors.Add(user.UserName);
     }
-    int selected_sategory = 0;
+    int selected_category = 0;
 
 }
 
@@ -24,23 +24,53 @@
             </div>
         }
     </div>
-    <div class="text-center align-self-md-center">
-        @for (var i = 0; i < Model.recipes.Count; i++)
-        {
-            <div class="row mb-1">
-                <div class="col">
-                    <p>@Model.recipes[i].Name</p>
+    <div class="container">
+        <div class="text-center align-self-md-center">
+            <div class="row mb-1 border-2 border-bottom border-dark mb-4">
+                <div class="col text-center align-items-center justify-content-center my-auto">
+                    <p class="m-2"> Recipe name</p>
                 </div>
-                <div class="col">
-                    <p>@Model.categories.Find(cat => cat.Id == Model.recipes[i].CategoryId).Name</p>
+                <div class="col text-center align-items-center justify-content-center my-auto">
+                    <p class="m-2"> Category Name</p>
                 </div>
-                <div class="col">
-                    <p>@authors[i]</p>
+                <div class=" col text-center    align-items-center justify-content-center my-auto">
+                    <p class="m-2"> Author</p>
                 </div>
-                <div class="col">
-                    <p>@Model.recipes[i].kcal</p>
+                <div class="col text-center align-items-center justify-content-center my-auto">
+                    <p class="m-2"> Kcal</p>
+                </div>
+                <div class="col m-2 text-center align-items-center justify-content-center my-auto">
+                    <a class="btn btn-success text-white" asp-controller="Recipe" asp-action="Create"><i
+                            class="bi bi-patch-plus-fill"></i> New Recipe</a>
                 </div>
             </div>
-        }
+            @for (var i = 0; i < Model.recipes.Count; i++)
+            {
+                <div class="row mb-3 text-center border-2 border-light border p-3 rounded-3">
+                    <div class="col text-center align-items-center justify-content-center my-auto">
+                        <p class="m-2">@Model.recipes[i].Name</p>
+                    </div>
+                    <div class="col text-center align-items-center justify-content-center my-auto">
+                        <p class="m-2">@Model.categories.Find(cat => cat.Id == Model.recipes[i].CategoryId).Name</p>
+                    </div>
+                    <div class="col text-center align-items-center justify-content-center my-auto">
+                        <p class="m-2">@authors[i]</p>
+                    </div>
+                    <div class="col text-center align-items-center justify-content-center my-auto">
+                        <p class="m-2">@Model.recipes[i].kcal</p>
+                    </div>
+
+                    <div class="col w align-items-center justify-content-center my-auto text-nowrap">
+                        <a class="btn btn-outline-primary" asp-action="Edit" asp-controller="Recipe"
+                        asp-route-id="@Model.recipes[i].Id"><i class="bi bi-pen-fill"></i> Edit </a>
+                        <a class="btn btn-outline-info" asp-action="Details" asp-controller="Recipe"
+                        asp-route-id="@Model.recipes[i].Id"> Details </a>
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-controller="Recipe"
+                        asp-route-id="@Model.recipes[i].Id"><i class="bi bi-backspace-reverse-fill"></i></a>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
+
 </div>

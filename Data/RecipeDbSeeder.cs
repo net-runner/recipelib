@@ -242,13 +242,39 @@ new Role() { Name = "RecipeMaster" }
     }
     private async Task CreateUsers()
     {
-        User u1, u2, u3;
+        User u1, u2, u3, u4, u5, u6, u7, u8;
         string pass = "zaq1@WSX";
         u1 = new User()
         {
             UserName = "Guest",
             Email = "guest@guest.guest",
         };
+        u4 = new User()
+        {
+            UserName = "Guest1",
+            Email = "guest1@guest.guest",
+        };
+        u5 = new User()
+        {
+            UserName = "Guest12",
+            Email = "guest2@guest.guest",
+        };
+        u6 = new User()
+        {
+            UserName = "Guest13",
+            Email = "guest3@guest.guest",
+        };
+        u7 = new User()
+        {
+            UserName = "Guest14",
+            Email = "guest4@guest.guest",
+        };
+        u8 = new User()
+        {
+            UserName = "Guest15",
+            Email = "guest5@guest.guest",
+        };
+
         u2 = new User()
         {
             UserName = "Adam",
@@ -264,7 +290,17 @@ new Role() { Name = "RecipeMaster" }
         await _userManager.CreateAsync(u1, pass);
         await _userManager.CreateAsync(u2, pass);
         await _userManager.CreateAsync(u3, pass);
+        await _userManager.CreateAsync(u4, pass);
+        await _userManager.CreateAsync(u5, pass);
+        await _userManager.CreateAsync(u6, pass);
+        await _userManager.CreateAsync(u7, pass);
+        await _userManager.CreateAsync(u8, pass);
         await _userManager.AddToRoleAsync(u1, "User");
+        await _userManager.AddToRoleAsync(u4, "User");
+        await _userManager.AddToRoleAsync(u5, "User");
+        await _userManager.AddToRoleAsync(u6, "User");
+        await _userManager.AddToRoleAsync(u7, "User");
+        await _userManager.AddToRoleAsync(u8, "User");
         await _userManager.AddToRoleAsync(u2, "Administrator");
         await _userManager.AddToRoleAsync(u3, "RecipeMaster");
     }

@@ -1,6 +1,23 @@
+@model List<User>
 @{
     ViewData["Title"] = "Users";
 }
-<div>
-    Users
+<div class="container">
+    <div>
+        <h2> Users</h2>
+    </div>
+    <div class="text-center align-self-md-center">
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            <div class="row mb-1">
+                <div class="col">
+                    <p class="float-lg-start">@Model[i].Email</p>
+                </div>
+                <div class="col">
+                    <p>@Model[i].UserName</p>
+                </div>
+
+            </div>
+        }
+    </div>
 </div>

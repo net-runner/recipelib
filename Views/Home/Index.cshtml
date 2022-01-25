@@ -39,7 +39,7 @@
                 <div class="col text-center align-items-center justify-content-center my-auto">
                     <p class="m-2"><i class="bi bi-egg"></i> Kcal</p>
                 </div>
-                @if (User.IsInRole("Administrator") || User.IsInRole("Recipemaster"))
+                @if (User.IsInRole("Administrator") || User.IsInRole("RecipeMaster"))
                 {
                     <div class="col m-2 text-center align-items-center justify-content-center my-auto">
 
@@ -65,7 +65,7 @@
                     <div class="col text-center align-items-center justify-content-center my-auto">
                         <p class="m-2">@Model.recipes[i].kcal</p>
                     </div>
-                    @if (User.IsInRole("Administrator") || User.IsInRole("Recipemaster"))
+                    @if (User.IsInRole("Administrator") || User.IsInRole("RecipeMaster"))
                     {
                         <div class="col w align-items-center justify-content-center my-auto text-nowrap">
                             <a class="btn btn-outline-primary" asp-action="Edit" asp-controller="Recipe"

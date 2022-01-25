@@ -44,7 +44,10 @@ public class AccountController : Controller
         return View();
     }
 
-
+    public IActionResult AccessDenied()
+    {
+        return View();
+    }
     [HttpPost]
     public async Task<IActionResult> RegisterUser(RegisterModel dto)
     {

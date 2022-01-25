@@ -7,6 +7,7 @@ public class Recipe
 {
     public string Id { get; set; }
     public string Name { get; set; }
+    public int kcal { get; set; }
 
     [ForeignKey("Category")]
     public string CategoryId { get; set; }

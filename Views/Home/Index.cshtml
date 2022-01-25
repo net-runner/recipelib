@@ -1,8 +1,46 @@
+@model RecipeLib.Models.HomeModel
+@inject UserManager<User> UserManager
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Recipes";
+    List<string> authors = new();
+    for (var i = 0; i < Model.recipes.Count; i++)
+    {
+        var user = await UserManager.FindByIdAsync(Model.recipes[i].AuthorId);
+        authors.Add(user.UserName);
+    }
+    int selected_sategory = 0;
+
 }
 
-<div class="text-center align-self-md-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col btn-light m-1 text-center align-items-center justify-content-center my-auto">
+            <p class="m-2">All</p>
+        </div>
+        @foreach (var category in @Model.categories)
+        {
+            <div class="col btn-light m-1 text-center align-items-center justify-content-center my-auto">
+                <p class="m-2">@category.Name</p>
+            </div>
+        }
+    </div>
+    <div class="text-center align-self-md-center">
+        @for (var i = 0; i < Model.recipes.Count; i++)
+        {
+            <div class="row mb-1">
+                <div class="col">
+                    <p>@Model.recipes[i].Name</p>
+                </div>
+                <div class="col">
+                    <p>@Model.categories.Find(cat => cat.Id == Model.recipes[i].CategoryId).Name</p>
+                </div>
+                <div class="col">
+                    <p>@authors[i]</p>
+                </div>
+                <div class="col">
+                    <p>@Model.recipes[i].kcal</p>
+                </div>
+            </div>
+        }
+    </div>
 </div>

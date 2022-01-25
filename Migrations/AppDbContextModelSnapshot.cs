@@ -165,6 +165,9 @@ namespace RecipeLib.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("kcal")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Recipes");

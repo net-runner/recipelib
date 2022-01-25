@@ -95,7 +95,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[0].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                         new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -103,7 +104,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[0].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                         new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -111,7 +113,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[0].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                         new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -127,7 +130,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[1].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                         new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -135,7 +139,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[1].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                                     new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -143,7 +148,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[2].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                         new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -159,7 +165,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[2].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                                                 new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -167,7 +174,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[3].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                         new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -175,7 +183,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[3].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                         new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -183,7 +192,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[3].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                                                 new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -191,7 +201,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[4].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                         new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -199,7 +210,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[4].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
                         new Recipe(){
                 Id = Guid.NewGuid().ToString(),
@@ -207,7 +219,8 @@ public class RecipeAppSeeder
                 CategoryId = categories[4].Id,
                 AuthorId = InitialAuthor[0].Id,
                 Ingredients = DefaultIngredients,
-                Method = DefaultMethod
+                Method = DefaultMethod,
+                kcal = 102
             },
 
         };

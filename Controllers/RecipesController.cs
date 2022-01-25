@@ -1,9 +1,12 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace RecipeLib.Controllers;
 
 
 
+[Authorize(Roles = "Administrator")]
+[Authorize(Roles = "RecipeMaster")]
 public class RecipesController : Controller
 {
     public IActionResult Index()
@@ -11,7 +14,7 @@ public class RecipesController : Controller
         return View();
     }
 
-    public IActionResult Welcome()
+    public IActionResult Delete()
     {
         ViewData["Message"] = "Your welcome message";
 

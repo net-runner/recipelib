@@ -225,7 +225,7 @@ public class RecipeAppSeeder
 
         };
 
-        await _dbContext.AddRangeAsync(recipes, CancellationToken.None);
+        await _dbContext.Recipes.AddRangeAsync(recipes, CancellationToken.None);
         await _dbContext.SaveChangesAsync();
     }
     private async Task CreateRoles()

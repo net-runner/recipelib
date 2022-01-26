@@ -15,6 +15,18 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #495057cc;
+}
+
+.card-glass {
+  background-color: #495057;
+}
+
+.super-card {
+  border-radius: 46px;
+  background: linear-gradient(45deg, #42484e, #4e565d);
+  box-shadow: 10px -10px 19px #353a40,
+    -10px 10px 19px #5d666e;
 }
 
 /*for tab control*/
@@ -43,4 +55,8 @@ div.card-content {
 /*login form*/
 div.login-form-icon {
   text-align: center;
+}
+
+.btico {
+  display: none;
 }

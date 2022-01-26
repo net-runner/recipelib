@@ -20,8 +20,21 @@ public class RecipeController : Controller
         _dbContext = dbContext;
     }
 
-
-
+    [AllowAnonymous]
+    public async Task<IActionResult> Details(string id = "x")
+    {
+        _logger.LogInformation("Show recipe details: " + id);
+        if (id == "x")
+        {
+            return LocalRedirect("/");
+        }
+        var recipe = await _dbContext.Recipes.FindAsync(id);
+        if (recipe == null)
+        {
+            return NotFound();
+        }
+        return View(recipe);
+    }
     public async Task<IActionResult> Delete(string id = "x")
     {
         _logger.LogInformation("Remove recipe: " + id);

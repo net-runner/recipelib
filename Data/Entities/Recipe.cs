@@ -5,8 +5,12 @@ namespace RecipeLib.Entities;
 
 public class Recipe
 {
-    public string Id { get; set; }
+    public string Id { get; set; } = Guid.NewGuid().ToString();
     public string Name { get; set; }
+
+
+    public string ImgSmall { get; set; }
+    public string ImgCard { get; set; }
     public int kcal { get; set; }
 
     [ForeignKey("Category")]

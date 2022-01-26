@@ -156,6 +156,12 @@ namespace RecipeLib.Migrations
                     b.Property<string>("CategoryId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImgCard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImgSmall")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("IngredientsSerialized")
                         .HasColumnType("nvarchar(max)");
 

@@ -87,137 +87,138 @@ public class RecipeAppSeeder
             "Bake for 12-15 minutes until edges of cookies are golden brown",
             "Let cool completely before eating."
         };
+        string DefaultSmallImage = "/assets/recipe-img/butter-cookie-small.jpg";
+        string DefaultLargeImage = "/assets/recipe-img/butter-cookie-large.jpg";
         List<Recipe> recipes = new List<Recipe>(){
 
             new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe01",
                 CategoryId = categories[0].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe02",
                 CategoryId = categories[0].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe03",
                 CategoryId = categories[0].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe11",
                 CategoryId = categories[1].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe12",
                 CategoryId = categories[1].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe13",
                 CategoryId = categories[1].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                                     new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe21",
                 CategoryId = categories[2].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe22",
                 CategoryId = categories[2].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe23",
                 CategoryId = categories[2].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                                                 new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe31",
                 CategoryId = categories[3].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe32",
                 CategoryId = categories[3].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe33",
                 CategoryId = categories[3].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                                                 new Recipe(){
-                Id = Guid.NewGuid().ToString(),
                 Name = "Recipe41",
                 CategoryId = categories[4].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe42",
                 CategoryId = categories[4].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102
             },
                         new Recipe(){
-                Id = Guid.NewGuid().ToString(),
+
                 Name = "Recipe43",
                 CategoryId = categories[4].Id,
-                AuthorId = InitialAuthor[0].Id,
+                AuthorId = InitialAuthor[0].Id, ImgSmall = DefaultSmallImage, ImgCard = DefaultLargeImage,
                 Ingredients = DefaultIngredients,
                 Method = DefaultMethod,
                 kcal = 102

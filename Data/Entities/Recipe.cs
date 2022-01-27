@@ -18,11 +18,13 @@ public class Recipe
     public string ImgCard { get; set; }
 
     [NotMapped]
+    [Required]
     [DisplayName("Upload image for details")]
     public IFormFile ImageSmallUpload { get; set; }
 
 
     [NotMapped]
+    [Required]
     [DisplayName("Upload image for homescreen card")]
     public IFormFile ImageCardUpload { get; set; }
 

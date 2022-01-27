@@ -8,6 +8,8 @@
         <div class="row p-3">
             <div class="col ps-4 pt-5">
                 <div class="form-group">
+                    <input asp-for="Recipe.ImgCard" type="hidden" />
+                    <input asp-for="Recipe.ImgSmall" type="hidden" />
                     <label asp-for="Recipe.Name" class="control-label text-primary fs-3"></label>
                     <input asp-for="Recipe.Name" class="form-control text-light"
                         style="background-color:rgb(28, 30, 31);" />
@@ -26,9 +28,19 @@
                         style="background-color:rgb(28, 30, 31);" id="exampleSelect1">
                         @for (var i = 0; i < Model.Categories.Count; i++)
                         {
-                            <option value="Model.Categories[@i].id">
-                                @Model.Categories[i].Name
-                            </option>
+                            @if (Model.Categories[@i].Id == Model.Recipe.CategoryId)
+                            {
+                                <option value="@Model.Categories[@i].Id" selected>
+                                    @Model.Categories[i].Name
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="@Model.Categories[@i].Id">
+                                    @Model.Categories[i].Name
+                                </option>
+                            }
+
                         }
                     </select>
                     <span asp-validation-for="Recipe.Category" class="text-danger"></span>
@@ -107,29 +119,30 @@
                 </table>
 
                 <div class="form-group">
-                    <div class="col-md-6 offset-md-3">
-                        <input type="submit" value="Edit" class="btn btn-primary btn-block" />
+                    <div class="">
+                        <input type="submit" value="Edit" class="btn btn-primary btn-block w-100" />
                     </div>
                 </div>
             </div>
             <div class="col flex-1 pt-3">
-                <img class="card-img align-self-end rounded-circle img-fluid" src="@Model.Recipe.ImgSmall" />
+                <img id="imgDisplay-small" class="card-img align-self-end rounded-circle img-fluid"
+                    src="@Model.Recipe.ImgSmall" />
 
                 <div class="form-group mt-3">
                     <label asp-for="Recipe.ImageSmallUpload" class="control-label text-primary fs-3">Img small
                         src</label>
-                    <input asp-for="Recipe.ImageSmallUpload" class="form-control text-light"
+                    <input asp-for="Recipe.ImageSmallUpload" type="file" class="form-control text-light"
                         style="background-color:rgb(28, 30, 31)" />
                     <span asp-validation-for="Recipe.ImageSmallUpload" class="text-danger"></span>
                 </div>
 
 
-                <img class="card-img align-self-end img-fluid mt-3" src="@Model.Recipe.ImgCard" />
+                <img id="imgDisplay-card" class="card-img align-self-end img-fluid mt-3" src="@Model.Recipe.ImgCard" />
 
                 <div class="form-group mt-3">
                     <label asp-for="Recipe.ImageCardUpload" class="control-label text-primary fs-3">Img large
                         src</label>
-                    <input asp-for="Recipe.ImageCardUpload" class="form-control text-light"
+                    <input asp-for="Recipe.ImageCardUpload" type="file" class="form-control text-light"
                         style="background-color:rgb(28, 30, 31)" />
                     <span asp-validation-for="Recipe.ImageCardUpload" class="text-danger"></span>
                 </div>
@@ -144,7 +157,6 @@
 @section Scripts {
 <script>
     var counter = '@Model.Recipe.Ingredients.Count';
-    console.log(counter);
     function addRow() {
         var table = document.getElementById("tbody");
         var row = table.insertRow(-1);
@@ -189,5 +201,14 @@
         // Decreasing the total number of rows by 1.
         counter--;
     });
+
+
+    function uploadStarted(type) {
+        $get("imgDisplay-" + type).style.display = "none";
+    }
+
+
+
+
 </script>
 }

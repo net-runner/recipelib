@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
@@ -15,6 +16,16 @@ public class Recipe
     public string ImgSmall { get; set; }
     [Required]
     public string ImgCard { get; set; }
+
+    [NotMapped]
+    [DisplayName("Upload image for details")]
+    public IFormFile ImageSmallUpload { get; set; }
+
+
+    [NotMapped]
+    [DisplayName("Upload image for homescreen card")]
+    public IFormFile ImageCardUpload { get; set; }
+
     [Required]
     public int kcal { get; set; }
 

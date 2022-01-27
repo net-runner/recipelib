@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecipeLib.Entities;
+using RecipeLib.Models;
 
 namespace RecipeLib.Controllers;
 
@@ -35,6 +36,24 @@ public class RecipeController : Controller
         }
         return View(recipe);
     }
+
+    public async Task<IActionResult> Edit(string id = "x")
+    {
+        _logger.LogInformation("Edit recipe: " + id);
+        if (id == "x")
+        {
+            return LocalRedirect("/");
+        }
+        var recipe = await _dbContext.Recipes.FindAsync(id);
+        if (recipe == null)
+        {
+            return NotFound();
+        }
+        var categories = _dbContext.Categories.ToList();
+        return View("Edit", new RecipeEditModel() { Recipe = recipe, Categories = categories });
+    }
+
+
     public async Task<IActionResult> Delete(string id = "x")
     {
         _logger.LogInformation("Remove recipe: " + id);

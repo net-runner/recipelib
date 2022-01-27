@@ -4,7 +4,7 @@
 /obj/
 /wwwroot/build
 .vscode
-
+.vs
 .DS_Store
 
 # .NET Core

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
@@ -5,20 +6,35 @@ namespace RecipeLib.Entities;
 
 public class Recipe
 {
+    [Key]
     public string Id { get; set; } = Guid.NewGuid().ToString();
+    [Required]
     public string Name { get; set; }
 
-
+    [Required]
     public string ImgSmall { get; set; }
+    [Required]
     public string ImgCard { get; set; }
+    [Required]
     public int kcal { get; set; }
 
-    [ForeignKey("Category")]
+
+    [Required]
     public string CategoryId { get; set; }
-
-
-    [ForeignKey("User")]
+    [Required]
     public string AuthorId { get; set; }
+
+    [Required]
+    public virtual Category Category { get; set; }
+
+
+
+
+
+
+    [Required]
+    [ForeignKey("AuthorId")]
+    public virtual User User { get; set; }
 
 
     [NotMapped]

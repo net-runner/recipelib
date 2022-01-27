@@ -4,7 +4,41 @@ html {
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 14px;
+  }
+
+}
+
+@media only screen and (max-width: 1100px) {
+  .recipez {
+    flex-basis: 22% !important;
+  }
+
+  .categoriez {
+    flex-basis: 10% !important;
+
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .recipez {
+    flex-basis: 33% !important;
+  }
+
+  .categoriez {
+    flex-basis: 22% !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .recipez {
+    flex-basis: 45% !important;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .recipez {
+    flex-basis: 100% !important;
   }
 }
 
@@ -21,6 +55,26 @@ body {
 .card-glass {
   background-color: #495057;
 }
+
+.reciperow {
+  padding-left: 8vw;
+  padding-right: 8vw;
+}
+
+.categoryrow {
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.recipez {
+  flex-basis: 15%;
+}
+
+.rb {
+  border-bottom-left-radius: 8%;
+  border-bottom-right-radius: 8%;
+}
+
 
 .super-card {
   border-radius: 46px;
@@ -59,4 +113,9 @@ div.login-form-icon {
 
 .btico {
   display: none;
+}
+
+.ind {
+  border-top-left-radius: 20%;
+  border-top-right-radius: 20%;
 }

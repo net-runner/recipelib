@@ -20,7 +20,7 @@ public class RecipeAppSeeder
         _roleManager = roleManager;
     }
 
-    public async void CreateInitialData()
+    public async Task CreateInitialData()
     {
         if (_dbContext.Database.CanConnect())
         {

@@ -12,7 +12,7 @@ using RecipeLib.Entities;
 namespace RecipeLib.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220126220050_initial")]
+    [Migration("20220127110413_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,13 +136,13 @@ namespace RecipeLib.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
-                        .IsUnique()
-                        .HasFilter("[Name] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Categories");
                 });

@@ -2,8 +2,8 @@
 @{
     ViewData["Title"] = "Recipe details";
 }
-<div class="container  super-card card align-self-center w-50 mt-5">
-    <div class="row">
+<div class="container  super-card card align-self-center w-50 mt-5 p-0  pb-0">
+    <div class="row p-3">
         <div class="col ps-4 pt-5">
             <h1>@Model.Name</h1>
             <p class="text-light">Kcal: @Model.kcal</p>
@@ -14,7 +14,7 @@
     </div>
 
 
-    <div>
+    <div class="p-3">
         <h3 class="ms-3">Ingredients:</h3>
         <ul>
             @foreach (var item in Model.Ingredients)
@@ -25,7 +25,7 @@
             }
         </ul>
     </div>
-    <div>
+    <div class="p-3">
         <h3 class="ms-3">Instructions:</h3>
         <ul>
             @foreach (var item in Model.Method)
@@ -36,7 +36,7 @@
             }
         </ul>
     </div>
-    <div class="footer mt-3 text-center">
-        <h4>Enjoy!</h4>
+    <div class="footer mt-3 text-center bg-dark ">
+        <h4 class="text-light m-2">Enjoy!</h4>
     </div>
 </div>

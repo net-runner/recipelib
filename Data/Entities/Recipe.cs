@@ -18,24 +18,15 @@ public class Recipe
     [Required]
     public int kcal { get; set; }
 
-
     [Required]
     public string CategoryId { get; set; }
     [Required]
     public string AuthorId { get; set; }
 
-    [Required]
-    public virtual Category Category { get; set; }
+    public Category Category { get; set; }
 
-
-
-
-
-
-    [Required]
     [ForeignKey("AuthorId")]
-    public virtual User User { get; set; }
-
+    public User User { get; set; }
 
     [NotMapped]
     public virtual List<string> Method

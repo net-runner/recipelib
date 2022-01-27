@@ -71,16 +71,13 @@ body {
 }
 
 .rb {
-  border-bottom-left-radius: 8%;
-  border-bottom-right-radius: 8%;
+  /* border-bottom-left-radius: 8%;
+  border-bottom-right-radius: 8%; */
 }
 
 
 .super-card {
-  border-radius: 46px;
-  background: linear-gradient(45deg, #42484e, #4e565d);
-  box-shadow: 10px -10px 19px #353a40,
-    -10px 10px 19px #5d666e;
+  background-color: #495057;
 }
 
 /*for tab control*/
@@ -116,6 +113,26 @@ div.login-form-icon {
 }
 
 .ind {
-  border-top-left-radius: 20%;
-  border-top-right-radius: 20%;
+  border-top-left-radius: 8%;
+  border-top-right-radius: 8%;
+}
+
+.ox {
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  right: 0;
+  z-index: 999;
+  background-color: #495057;
+  /* border-top-left-radius: 30%;
+  border-top-right-radius: 30%; */
+}
+
+ul {
+  list-style: square;
+}
+
+li::marker {
+  color: white;
+
 }

@@ -8,119 +8,105 @@
         var user = await UserManager.FindByIdAsync(Model.recipes[i].AuthorId);
         authors.Add(user.UserName);
     }
-
+    var isPrivilidged = User.IsInRole("Administrator") || User.IsInRole("RecipeMaster");
 }
-    @* <div class="container px-2">
-        <div class="text-center align-self-md-center">
-            <div class="row mb-1 border-2 border-bottom border-dark mb-4">
-                <div class="col text-center align-items-center justify-content-center my-auto">
-                    <p class="m-2 text-white"><i class="bi bi-receipt"></i> Recipe name</p>
-                </div>
-                <div class="col text-center align-items-center justify-content-center my-auto">
-                    <p class="m-2 text-white"><i class="bi bi-x-diamond"></i> Category Name</p>
-                </div>
-                <div class=" col text-center    align-items-center justify-content-center my-auto">
-                    <p class="m-2 text-white"><i class="bi bi-person-bounding-box"></i> Author</p>
-                </div>
-                <div class="col text-center align-items-center justify-content-center my-auto">
-                    <p class="m-2 text-white"><i class="bi bi-egg"></i> Kcal</p>
-                </div>
-
-            </div>
-
-        </div>
-    </div> *@
 
 
-    <div class="d-flex flex-row categoryrow mb-5 flex-wrap">
-        <div onclick="clickCategory('all')"
-            class="col categoriez  btn-primary opacity-75 m-1 text-center align-items-center justify-content-center">
+<div class="d-flex flex-row categoryrow mb-5 flex-wrap">
+    <div onclick="clickCategory('all')"
+        class="col categoriez  btn-primary opacity-75 m-1 text-center align-items-center justify-content-center">
 
-            <p class="m-2"><i class="bi btico bi-bullseye me-2 btico-all"></i>All</p>
-        </div>
+        <p class="m-2"><i class="bi btico bi-bullseye me-2 btico-all"></i>All</p>
+    </div>
     @foreach (var category in @Model.categories)
     {
-                <div onclick="clickCategory('@category.Name.Replace(' ','-').ToLower()')" class="col categoriez  btn-primary opacity-75 m-1 text-center align-items-center justify-content-center text-nowrap">
-                    <p class="m-2"><i class="bi btico bi-bullseye me-2 btico-@category.Name.Replace(' ','-').ToLower()"></i>@category.Name</p>
-                </div>
+        <div onclick="clickCategory('@category.Name.Replace(' ','-').ToLower()')"
+        class="col categoriez  btn-primary opacity-75 m-1 text-center align-items-center justify-content-center text-nowrap">
+            <p class="m-2"><i
+                class="bi btico bi-bullseye me-2 btico-@category.Name.Replace(' ','-').ToLower()"></i>@category.Name</p>
+        </div>
     }
-    </div>
-@if (User.IsInRole("Administrator") || User.IsInRole("RecipeMaster"))
+</div>
+@if (isPrivilidged)
 {
-                        <div class="col m-2 text-center align-items-center justify-content-center my-auto">
-                            <a class="btn btn-md btn-success rounded-pill text-white" asp-controller="Recipe" asp-action="Create"><i
-                            class="bi bi-patch-plus-fill"></i> New </a>
-                        </div>
+    <div class="col m-2 text-center align-items-center justify-content-center my-auto">
+        <a class="btn btn-md btn-success rounded-pill text-white" asp-controller="Recipe" asp-action="Create"><i
+            class="bi bi-patch-plus-fill"></i> New </a>
+    </div>
 }
-<div class="d-flex justify-content-between flex-row flex-wrap w-100 reciperow">
+<div class="d-flex justify-content-evenly flex-row flex-wrap w-100 reciperow">
 
     @for (var i = 0; i < Model.recipes.Count; i++)
     {
-                    <div class="d-inline-flex mb-5  card overflow-hidden   card-glass text-center border-2 border-primary border border p-0  rounded-3 recipez @Model.categories.Find(cat => cat.Id == Model.recipes[i].CategoryId).Name.Replace(' ','-').ToLower()">
-                        <div class="row card-glass">
-                            <img src="@Model.recipes[i].ImgCard" class="img-fluid rb"/>
+        <div onclick="goToDetails('@Model.recipes[i].Id', '@isPrivilidged')"
+        class="mb-5 card overflow-hidden   card-glass text-center border-2 border-primary border border p-0  rounded-3 recipez @Model.categories.Find(cat => cat.Id == Model.recipes[i].CategoryId).Name.Replace(' ','-').ToLower()">
+            <div class="row card-glass">
+                <img src="@Model.recipes[i].ImgCard" class="img-fluid rb" />
 
-                        </div>
+            </div>
+            <div class="position-relative">
+                <div
+                class="position-absolute rounded-pill  ox d-flex flex-row align-self-center text-center align-content-center align-items-center justify-content-center my-auto">
 
-                        <div class="w-auto d-flex flex-row align-self-center text-center align-content-center align-items-center justify-content-center my-auto">
+                    <p class="m-2 text-white">@Model.recipes[i].kcal </p>
+                    <p class="m-2 text-light opacity-50">kcal</p>
+                </div>
+                <div class=" text-start ms-2 mt-4 align-items-center justify-content-center my-auto">
+                    <h5 class="m-2 text-white">@Model.recipes[i].Name</h5>
+                </div>
 
-                            <p class="m-2 text-white" >@Model.recipes[i].kcal </p>
-                            <p class="m-2 text-light opacity-50">kcal</p>
-                        </div>
-                        <div class=" text-start ms-2 mt-2 align-items-center justify-content-center my-auto">
-                            <h5 class="m-2 text-white">@Model.recipes[i].Name</h5>
-                        </div>
+                <div class="  row ms-2  text-start align-selft-start align-items-center justify-content-start my-auto">
+                    <p class="me-2 w-25 text-white text-nowrap"><i class="bi bi-person-bounding-box"></i> Author:
+                        @authors[i]
+                    </p>
+                </div>
 
-                        <div class="row ms-2  text-start align-items-center justify-content-start my-auto">
-                            <p class="me-2 w-25 text-white text-nowrap"><i class="bi bi-person-bounding-box"></i> Author: @authors[i] </p>
-                        </div>
-                        <div class=" text-center align-items-center justify-content-center my-auto">
-
-                        </div>
-            @if (User.IsInRole("Administrator") || User.IsInRole("RecipeMaster"))
-            {
-                                <div class="col align-items-center justify-content-center my-auto text-nowrap">
-                                    <a class="btn btn-sm btn-outline-primary " asp-action="Edit" asp-controller="Recipe"
+                <div class="w-100 m-0 p-2 text-nowrap align-self-center text-center bg-primary ind">
+                    <p class="m-0 fs-6 text-white ">@Model.categories.Find(cat => cat.Id ==
+                    Model.recipes[i].CategoryId).Name
+                    </p>
+                    @if (isPrivilidged)
+                    {
+                        <div class="col align-items-center justify-content-center my-auto text-nowrap">
+                            <a class="btn btn-sm btn-primary " asp-action="Edit" asp-controller="Recipe"
                         asp-route-id="@Model.recipes[i].Id"><i class="bi bi-pen-fill"></i> Edit </a>
-                                    <a class="btn btn-sm btn-outline-info" asp-action="Details" asp-controller="Recipe"
-                        asp-route-id="@Model.recipes[i].Id"> Details </a>
-                                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-controller="Recipe"
-                        asp-route-id="@Model.recipes[i].Id"><i class="bi bi-backspace-reverse-fill"></i></a>
-                                </div>
-            }
-                        <div class="w-100 text-nowrap align-self-center text-center bg-primary ind">
-                             <p class="m-2 fs-6 text-white ">@Model.categories.Find(cat => cat.Id == Model.recipes[i].CategoryId).Name</p>
+                            <a class="btn btn-sm btn-primary" asp-action="Delete" asp-controller="Recipe"
+                        asp-route-id="@Model.recipes[i].Id"><i class="bi bi-backspace-reverse-fill"></i> Delete</a>
                         </div>
-                    </div>
+                    }
+                </div>
+            </div>
+        </div>
     }
 </div>
 
 <script type="text/javascript">
     console.log("Hello from JS");
-            $(`.btico-all`).css('display', 'inline-block');
-
-            const clickCategory = (category) => {
-            $(`.btico`).each((index, element) => {
-                $(element).css('display', 'none');
-            });
-            if(category == "all"){
+    $(`.btico-all`).css('display', 'inline-block');
+    const goToDetails = (id, isPriviledged) => {
+        location.href = location.href + "Recipe/Details/" + id;
+    }
+    const clickCategory = (category) => {
+        $(`.btico`).each((index, element) => {
+            $(element).css('display', 'none');
+        });
+        if (category == "all") {
             $(`.btico-all`).css('display', 'inline-block');
             $(`.recipez`).each((index, element) => {
-                $(element).css('display', 'flex');
+                $(element).show();
             });
-            }else{
+        } else {
 
 
             $(`.btico-${category}`).css('display', 'inline-block');
             $(`.recipez`).each((index, element) => {
-                $(element).css('display', 'none');
+                $(element).hide();
             });
 
             $(`.${category}`).each((index, element) => {
-    @* console.log(element); *@
-                $(element).css('display', 'flex');
+                $(element).show();
             });
-            }
+        }
 
-        };
+    };
 </script>

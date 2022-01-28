@@ -1,13 +1,14 @@
 /node_modules/
 /public/build/
-/RecipeLib.App/bin/
-/RecipeLib.Test/bin/
-/RecipeLib.App/obj/
-/RecipeLib.Test/obj/
+/RecipeLib.App/bin/*
+/RecipeLib.Tests/bin/*
+/RecipeLib.App/obj/*
+/RecipeLib.Tests/obj/*
 /obj/
 /wwwroot/build
 .vscode
 .vs
+.vs/RecipeLib
 .DS_Store
 
 # .NET Core

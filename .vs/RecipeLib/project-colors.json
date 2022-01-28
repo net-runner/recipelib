@@ -15,7 +15,22 @@
       "ProjectGuid": "ca972f68-75a6-4ca9-b19a-0d42bda411fb",
       "DisplayName": "RecipeLib",
       "ColorIndex": 1
+    },
+    "149459ac-7c3a-48a6-9263-898132f4db17": {
+      "ProjectGuid": "149459ac-7c3a-48a6-9263-898132f4db17",
+      "DisplayName": "RecipeLib",
+      "ColorIndex": 2
+    },
+    "cb7fbe4a-23b8-4757-b894-7415bf442582": {
+      "ProjectGuid": "cb7fbe4a-23b8-4757-b894-7415bf442582",
+      "DisplayName": "RecipeLib.Tests",
+      "ColorIndex": 3
+    },
+    "f57046ee-e86c-4170-8c60-96f84e8f8d89": {
+      "ProjectGuid": "f57046ee-e86c-4170-8c60-96f84e8f8d89",
+      "DisplayName": "RecipeLib",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 5
 }

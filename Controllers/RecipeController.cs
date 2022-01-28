@@ -72,11 +72,30 @@ public class RecipeController : Controller
         {
             return NotFound();
         }
+
+
+        if (rem.Recipe.ImgSmall == null)
+        {
+            rem.Recipe.ImgSmall = recipe.ImgSmall;
+        }
+
+        if (rem.Recipe.ImgCard == null)
+        {
+            rem.Recipe.ImgCard = recipe.ImgCard;
+
+        }
+        if (rem.Recipe.Method == null)
+        {
+            rem.Recipe.Method = recipe.Method;
+        }
+
+        if (rem.Recipe.Ingredients == null)
+        {
+            rem.Recipe.Ingredients = recipe.Ingredients;
+        }
+
+
         _dbContext.Recipes.Remove(recipe);
-
-        rem.Recipe.ImgCard = UploadRecipeImages(rem.Recipe.ImageCardUpload);
-        rem.Recipe.ImgSmall = UploadRecipeImages(rem.Recipe.ImageSmallUpload);
-
         rem.Recipe.AuthorId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
         await _dbContext.Recipes.AddAsync(rem.Recipe);
         await _dbContext.SaveChangesAsync();
@@ -84,21 +103,30 @@ public class RecipeController : Controller
         ViewData["message"] = "Recipe edited successfully.";
         return LocalRedirect("/");
     }
-    private string UploadRecipeImages(IFormFile image)
-    {
-        string uniqueFileName = null;
 
-        if (image != null)
+    [HttpPost]
+    private async Task<IActionResult> UploadRecipeImages(List<IFormFile> images)
+    {
+
+        _logger.LogInformation("Upload recipe images ** ");
+        List<string> uploadedImages = new List<string>();
+
+        if (images != null)
         {
-            string uploadsFolder = Path.Combine(Environment.WebRootPath, "/assets/recipe-img");
-            uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            foreach (IFormFile image in images)
             {
-                image.CopyTo(fileStream);
+                string uploadsFolder = Path.Combine(Environment.WebRootPath, "/assets/recipe-img");
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await image.CopyToAsync(fileStream);
+                }
             }
+
+
         }
-        return uniqueFileName;
+        return Ok(uploadedImages);
     }
 
 
@@ -117,5 +145,14 @@ public class RecipeController : Controller
         _dbContext.Recipes.Remove(recipe);
         await _dbContext.SaveChangesAsync();
         return LocalRedirect("/");
+    }
+
+    public async Task<IActionResult> IngredientRow(string id)
+    {
+        _logger.LogInformation("Add IngredientRow");
+        var recipe = await _dbContext.Recipes.FindAsync(id);
+        var categories = _dbContext.Categories.ToList();
+        recipe.Ingredients.Add(new Ingredient());
+        return View("Edit", new RecipeEditModel() { Recipe = recipe, Categories = categories });
     }
 }

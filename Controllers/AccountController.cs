@@ -81,6 +81,7 @@ public class AccountController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> LoginUser(LoginModel dto)
     {
         _logger.LogInformation("User LogIn post");

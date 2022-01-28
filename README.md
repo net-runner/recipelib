@@ -5,6 +5,14 @@
 
 &nbsp;
 
+## Features
+
+- Xunit tested
+- Api + Cookie authorization and authentication
+- SqlDb
+- Responsive design
+
+
 ## Default accounts
 
 
@@ -56,13 +64,13 @@ username: Adam
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/net-runner/recipelib
 ```
 
-Go to the project directory
+Go to the project directory or test directory
 
 ```bash
-  cd my-project
+  cd RecipeLib.App 
 ```
 
 Install dependencies

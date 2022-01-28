@@ -69,7 +69,9 @@ namespace RecipeLib
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RecipeAppSeeder seeder, AppDbContext dbContext)
         {
+
             seeder.CreateInitialData();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

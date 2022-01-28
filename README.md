@@ -13,6 +13,20 @@
 - Responsive design
 
 
+## Database connection
+
+### Connection string location [AppDbContext.cs](https://github.com/net-runner/recipelib/blob/main/RecipeLib.App/Data/AppDbContext.cs)
+
+For custom database connection edit one following strings and recompile the app.
+
+```cs
+string localConnection
+string sqlConnection
+
+...
+
+optionsBuilder.UseSqlServer(localConnection);
+```
 ## Default accounts
 
 
@@ -21,7 +35,7 @@
 password: zaq1@WSX
 ```
 
-### Administrator accounts (same password as default)
+### Administrator account (same password as default)
 ```
 username: Adam
 ```
@@ -79,6 +93,12 @@ Install dependencies
   dotnet build
 ```
 
+Update database
+
+```bash
+  dotnet ef database update
+```
+
 Start the server
 
 ```bash
@@ -88,4 +108,9 @@ Start the server
 &nbsp;
 
 
+
+
+## Screenshots
+
+![Home page](https://github.com/net-runner/recipelib/blob/main/RecipeLib.App/screenshots/home-page-filtered.PNG)
 

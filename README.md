@@ -8,8 +8,8 @@
 ## Features
 
 - Xunit tested
-- Api + Cookie authorization and authentication
-- SqlDb
+- Cookie authorization and authentication
+- SqlDb or mssqllocaldb
 - Responsive design
 
 
@@ -112,5 +112,10 @@ Start the server
 
 ## Screenshots
 
-![Home page](https://github.com/net-runner/recipelib/blob/main/RecipeLib.App/screenshots/home-page-filtered.PNG)
+![Home page](https://github.com/net-runner/recipelib/blob/main/RecipeLib.App/screenshots/home-page.PNG)
 
+![Home page filtered](https://github.com/net-runner/recipelib/blob/main/RecipeLib.App/screenshots/home-page-filtered.PNG)
+
+![Recipe details](https://github.com/net-runner/recipelib/blob/main/RecipeLib.App/screenshots/recipe-details-page.PNG)
+
+![User list](https://github.com/net-runner/recipelib/blob/main/RecipeLib.App/screenshots/user-list-page.PNG)

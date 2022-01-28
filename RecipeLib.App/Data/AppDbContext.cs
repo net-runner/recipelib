@@ -6,7 +6,7 @@ namespace RecipeLib.Entities
 {
     public class AppDbContext : IdentityDbContext<User, Role, string>
     {
-
+        private string localConnection = "Server=(localdb)\\mssqllocaldb;Trusted_Connection=True;MultipleActiveResultSets=true; Integrated Security = false; DATABASE=recipedb";
         private string _connectionString = "Data Source= localhost;User Id=recipeapp;password=zaq1@WSX;Trusted_Connection=True;MultipleActiveResultSets=true; Integrated Security = false; DATABASE=recipedb";
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -23,7 +23,7 @@ namespace RecipeLib.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_connectionString);
+            optionsBuilder.UseSqlServer(localConnection);
 
         }
 

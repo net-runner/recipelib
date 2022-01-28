@@ -1,36 +1,16 @@
 {
   "Version": 1,
   "ProjectMap": {
-    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
-      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
-      "DisplayName": "Różne pliki",
-      "ColorIndex": -1
-    },
-    "4d2db013-6b1c-4793-84be-29817e084b44": {
-      "ProjectGuid": "4d2db013-6b1c-4793-84be-29817e084b44",
-      "DisplayName": "RecipeLib",
+    "a69d4a20-4928-47bb-88df-17fc83fad2c5": {
+      "ProjectGuid": "a69d4a20-4928-47bb-88df-17fc83fad2c5",
+      "DisplayName": "RecipeLib.Tests",
       "ColorIndex": 0
     },
-    "ca972f68-75a6-4ca9-b19a-0d42bda411fb": {
-      "ProjectGuid": "ca972f68-75a6-4ca9-b19a-0d42bda411fb",
+    "41016544-d370-4ccc-ae4a-f2eb1a8c8647": {
+      "ProjectGuid": "41016544-d370-4ccc-ae4a-f2eb1a8c8647",
       "DisplayName": "RecipeLib",
       "ColorIndex": 1
-    },
-    "149459ac-7c3a-48a6-9263-898132f4db17": {
-      "ProjectGuid": "149459ac-7c3a-48a6-9263-898132f4db17",
-      "DisplayName": "RecipeLib",
-      "ColorIndex": 2
-    },
-    "cb7fbe4a-23b8-4757-b894-7415bf442582": {
-      "ProjectGuid": "cb7fbe4a-23b8-4757-b894-7415bf442582",
-      "DisplayName": "RecipeLib.Tests",
-      "ColorIndex": 3
-    },
-    "f57046ee-e86c-4170-8c60-96f84e8f8d89": {
-      "ProjectGuid": "f57046ee-e86c-4170-8c60-96f84e8f8d89",
-      "DisplayName": "RecipeLib",
-      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 2
 }

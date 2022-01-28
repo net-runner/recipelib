@@ -1,6 +1,9 @@
 /node_modules/
 /public/build/
-/bin/
+/RecipeLib.App/bin/
+/RecipeLib.Test/bin/
+/RecipeLib.App/obj/
+/RecipeLib.Test/obj/
 /obj/
 /wwwroot/build
 .vscode

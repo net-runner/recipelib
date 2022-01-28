@@ -3,7 +3,7 @@
     ViewData["Title"] = "Recipe edit";
 }
 <div class="container  super-card card align-self-center w-75 mt-5 p-0  pb-0">
-    <form asp-action="EditRecipe" asp-controller="Recipe" asp-route-id="@Model.Recipe.Id" method="POST">
+    <form id="formMain" asp-action="EditRecipe" asp-controller="Recipe" asp-route-id="@Model.Recipe.Id" method="POST">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row p-3">
             <div class="col ps-4 pt-5">
@@ -61,27 +61,12 @@
                             </th>
                             <th class="text-light">@Html.DisplayNameFor(model=>model.Recipe.Ingredients[0].name)</th>
                             <th>
-                                <div onclick="addRow()" class="btn  btn-success">Add</div>
+                                <a asp-action="IngredientRow" asp-controller="Recipe" asp-route-id="@Model.Recipe.Id" onclick="addRow()" class="btn  btn-success">Add</a>
                             </th>
                         </tr>
                     </thead>
                     <tbody id="tbody" class=" mt-3">
-                        @for (var i = 0; i < Model.Recipe.Ingredients.Count; i++)
-                        {
-                            <tr id="@i">
-                                <td>
-                                    <input asp-for="Recipe.Ingredients[i].ammount" type="text"
-                                    class="form-control text-light" style="background-color:rgb(28, 30, 31)" />
-                                </td>
-                                <td>
-                                    <input asp-for="Recipe.Ingredients[i].name" type="text" class="form-control text-light"
-                                    style="background-color:rgb(28, 30, 31)" />
-                                </td>
-                                <td>
-                                    <div class="btn  btn-danger remove">Remove</div>
-                                </td>
-                            </tr>
-                        }
+                        @Html.EditorFor(model => Model.Recipe.Ingredients)
                     </tbody>
                 </table>
 
@@ -103,15 +88,16 @@
                         </tr>
                     </thead>
                     <tbody id="tbody" class=" mt-3">
+                        @Html.Partial("_MethodList", Model)
                         @for (var i = 0; i < Model.Recipe.Method.Count; i++)
                         {
-                            <tr id="@i">
+                            <tr id="@i" class="editorRow">
                                 <td>
                                     <input asp-for="Recipe.Method[i]" type="text" class="form-control text-light"
                                     style="background-color:rgb(28, 30, 31)" />
                                 </td>
                                 <td>
-                                    <div class="btn  btn-danger remove">Remove</div>
+                                    <div class="btn  btn-danger remove-m">Remove</div>
                                 </td>
                             </tr>
                         }
@@ -124,83 +110,92 @@
                     </div>
                 </div>
             </div>
-            <div class="col flex-1 pt-3">
-                <img id="imgDisplay-small" class="card-img align-self-end rounded-circle img-fluid"
-                    src="@Model.Recipe.ImgSmall" />
-
-                <div class="form-group mt-3">
-                    <label asp-for="Recipe.ImageSmallUpload" class="control-label text-primary fs-3">Img small
-                        src</label>
-                    <input asp-for="Recipe.ImageSmallUpload" type="file" class="form-control text-light"
-                        style="background-color:rgb(28, 30, 31)" />
-                    <span asp-validation-for="Recipe.ImageSmallUpload" class="text-danger"></span>
-                </div>
-
-
-                <img id="imgDisplay-card" class="card-img align-self-end img-fluid mt-3" src="@Model.Recipe.ImgCard" />
-
-                <div class="form-group mt-3">
-                    <label asp-for="Recipe.ImageCardUpload" class="control-label text-primary fs-3">Img large
-                        src</label>
-                    <input asp-for="Recipe.ImageCardUpload" type="file" class="form-control text-light"
-                        style="background-color:rgb(28, 30, 31)" />
-                    <span asp-validation-for="Recipe.ImageCardUpload" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-
-
 
     </form>
+    <div class="col flex-1 pt-3">
+        <img id="imgDisplay-small" class="card-img align-self-end rounded-circle img-fluid"
+            src="@Model.Recipe.ImgSmall" />
+        <form enctype="multipart/form-data" method="POST" onsubmit="handleSubmit(this);return false;">
+
+
+            <div class="form-group mt-3">
+                <label asp-for="ImageSmallUpload" class="control-label text-primary fs-3">Img small
+                    src</label>
+                <input asp-for="ImageSmallUpload" type="file" class="form-control text-light"
+                    style="background-color:rgb(28, 30, 31)" />
+                <span asp-validation-for="ImageSmallUpload" class="text-danger"></span>
+            </div>
+
+
+            <img id="imgDisplay-card" class="card-img align-self-end img-fluid mt-3" src="@Model.Recipe.ImgCard" />
+
+            <div class="form-group mt-3">
+                <label asp-for="ImageCardUpload" class="control-label text-primary fs-3">Img large
+                    src</label>
+                <input asp-for="ImageCardUpload" type="file" class="form-control text-light"
+                    style="background-color:rgb(28, 30, 31)" />
+                <span asp-validation-for="ImageCardUpload" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="Submit" href="#Submit" value="Upload"
+                        class="btn btn-primary btn-block w-100">Submit
+                    </input>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
 </div>
 
 @section Scripts {
 <script>
     var counter = '@Model.Recipe.Ingredients.Count';
     function addRow() {
-        var table = document.getElementById("tbody");
-        var row = table.insertRow(-1);
-        row.id = counter;
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        cell2.innerHTML = `<input asp-for="Recipe.Ingredients[${counter}].ammount" type="text" class="form-control text-light"  style="background-color:rgb(28, 30, 31)" name="Ingredients[${counter}].name"/>`;
-        cell3.innerHTML = `<div  class="btn  btn-danger remove">Remove</div>`;
-        cell1.innerHTML = `<input asp-for="Recipe.Ingredients[${counter}].name" type="text" class="form-control text-light" style="background-color:rgb(28, 30, 31)" name="Ingredients[${counter}].ammount"/>`;
-        counter++;
+        var url = '@Url.Action("IngredientRow")';
+        $.ajax({
+            type: "POST",
+            url ,
+            cache: false,
+            success: function (html) { $("#tbody").append(html); }
+        });
     }
-    $('#tbody').on('click', '.remove', function () {
+    $("#tbody").on("click", ".remove", function () {
+        $(this).parents(".editorRow:first").remove();
+        return false;
+    });
 
-        // Getting all the rows next to the
-        // row containing the clicked button
-        var child = $(this).closest('tr').nextAll();
+    $("#tbody").on("click", ".remove-m", function () {
+        $(this).parents(".editorRow:first").remove();
+        return false;
+    });
 
-        // Iterating across all the rows
-        // obtained to change the index
-        child.each(function () {
 
-            // Getting <tr> id.
-            var id = $(this).attr('id');
+    async function handleSubmit(formElement) {
+        var resultElement = formElement.elements.namedItem("result");
 
-            // Getting the <p> inside the .row-index class.
-            var idx = $(this).children('.row-index').children('p');
+        const formData = new FormData(formElement);
 
-            // Gets the row number from <tr> id.
-            var dig = parseInt(id.substring(1));
+        console.log(FormData);
+        $.ajax({
+            type: "POST",
+            url: formElement.action,
+            data: formData,
+            error: function (xhr, status, error) {
+                //do something about the error
+            },
+            success: function (response) {
+                console.log(response);
+                //do something with response
+                @* LoadBooks(); *@
 
-            // Modifying row index.
-            idx.html(`Row ${dig - 1}`);
-
-            // Modifying row id.
-            $(this).attr('id', `R${dig - 1}`);
+            }
         });
 
-        // Removing the current row.
-        $(this).closest('tr').remove();
-
-        // Decreasing the total number of rows by 1.
-        counter--;
-    });
+    }
 
 
     function uploadStarted(type) {

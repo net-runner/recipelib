@@ -112,38 +112,38 @@
             </div>
 
     </form>
-    @* <div class="col flex-1 pt-3">
-        <img id="imgDisplay-small" class="card-img align-self-end rounded-circle img-fluid"
-        src="@Model.Recipe.ImgSmall" />
-        <form enctype="multipart/form-data" method="POST" onsubmit="handleSubmit(this);return false;">
+    <div class="col flex-1 pt-3">
+        <img id="imgDisplay-small" class="w-50 card-img align-self-end rounded-circle img-fluid"
+            src="@Model.Recipe.ImgSmall" />
+        <form id="among" enctype="multipart/form-data" method="POST" onsubmit="handleSubmit(this);return false;">
 
 
-        <div class="form-group mt-3">
-        <label asp-for="ImageSmallUpload" class="control-label text-primary fs-3">Img small
-        src</label>
-        <input asp-for="ImageSmallUpload" type="file" class="form-control text-light"
-        style="background-color:rgb(28, 30, 31)" />
-        <span asp-validation-for="ImageSmallUpload" class="text-danger"></span>
-        </div>
+            <div class="form-group mt-3">
+                <label asp-for="ImageSmallUpload" class="control-label text-primary fs-3">Img small
+                    src</label>
+                <input asp-for="ImageSmallUpload" type="file" class="form-control text-light"
+                    style="background-color:rgb(28, 30, 31)" />
+                <span asp-validation-for="ImageSmallUpload" class="text-danger"></span>
+            </div>
 
 
-        <img id="imgDisplay-card" class="card-img align-self-end img-fluid mt-3" src="@Model.Recipe.ImgCard" />
+            <img id="imgDisplay-card" class="card-img w-50 align-self-end img-fluid mt-3" src="@Model.Recipe.ImgCard" />
 
-        <div class="form-group mt-3">
-        <label asp-for="ImageCardUpload" class="control-label text-primary fs-3">Img large
-        src</label>
-        <input asp-for="ImageCardUpload" type="file" class="form-control text-light"
-        style="background-color:rgb(28, 30, 31)" />
-        <span asp-validation-for="ImageCardUpload" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-        <div class="">
-        <input type="Submit" href="#Submit" value="Upload" class="btn btn-primary btn-block w-100">Submit
-        </input>
-        </div>
-        </div>
+            <div class="form-group mt-3">
+                <label asp-for="ImageCardUpload" class="control-label text-primary fs-3">Img large
+                    src</label>
+                <input asp-for="ImageCardUpload" type="file" class="form-control text-light"
+                    style="background-color:rgb(28, 30, 31)" />
+                <span asp-validation-for="ImageCardUpload" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="Submit" href="#Submit" value="Upload" class="btn btn-primary btn-block w-100">Submit
+                    </input>
+                </div>
+            </div>
         </form>
-        </div> *@
+    </div>
 </div>
 
 
@@ -179,9 +179,10 @@
         const formData = new FormData(formElement);
 
         console.log(FormData);
+        console.log(formElement);
         $.ajax({
             type: "POST",
-            url: formElement.action,
+            url: '@Url.Action("UploadRecipeImages")',
             data: formData,
             error: function (xhr, status, error) {
                 //do something about the error

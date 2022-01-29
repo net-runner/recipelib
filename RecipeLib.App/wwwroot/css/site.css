@@ -59,18 +59,31 @@ body {
   background-color: #495057cc;
 }
 
+.btn {
+  opacity: 0.85;
+}
+
+.input-group-text {
+  background-color: gray !important;
+  color: white;
+}
+
 .card-glass {
   background-color: #495057;
 }
 
 .reciperow {
-  padding-left: 8vw;
-  padding-right: 8vw;
+  /* padding-left: 8vw;
+  padding-right: 8vw; */
 }
 
 .categoryrow {
   padding-left: 5vw;
   padding-right: 5vw;
+}
+
+input {
+  background-color: rgb(28, 30, 31) !important;
 }
 
 .recipez {
@@ -82,6 +95,10 @@ body {
   border-bottom-right-radius: 8%; */
 }
 
+#login input,
+.card-content input {
+  background-color: #f7f7f9 !important;
+}
 
 .super-card {
   background-color: #495057;
@@ -145,6 +162,6 @@ li::marker {
 }
 
 .table th,
-.table td{
+.table td {
   padding: 0 !important;
 }

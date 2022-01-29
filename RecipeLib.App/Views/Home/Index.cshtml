@@ -27,13 +27,13 @@
         </div>
     }
 </div>
-@* @if (isPrivilidged)
-    {
-    <div class="col m-2 text-center align-items-center justify-content-center my-auto">
-    <a class="btn btn-md btn-success rounded-pill text-white" asp-controller="Recipe" asp-action="Create"><i
-    class="bi bi-patch-plus-fill"></i> New </a>
+@if (isPrivilidged)
+{
+    <div class="text-center align-items-center justify-content-center my-auto mb-4">
+        <a class="btn btn-md w-75 btn-success  text-white" asp-controller="Recipe" asp-action="Add"><i
+            class="bi bi-patch-plus-fill"></i> New Recipe </a>
     </div>
-    } *@
+}
 <div class="d-flex justify-content-evenly flex-row flex-wrap w-100 reciperow">
 
     @for (var i = 0; i < Model.recipes.Count; i++)
@@ -81,7 +81,7 @@
 </div>
 
 <script type="text/javascript">
-    console.log("Hello from JS");
+    console.log(`%cRecipeLib - script ready!`, "font-size:3em;color:violet;");
     $(`.btico-all`).css('display', 'inline-block');
     const goToDetails = (id, isPriviledged) => {
         location.href = location.href + "Recipe/Details/" + id;

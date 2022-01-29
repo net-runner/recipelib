@@ -3,28 +3,25 @@
     ViewData["Title"] = "Edit user";
 }
 
-<div class="row">
-    <div class="col-md-12">
+<div class="row align-content-center justify-content-center">
+    <div class="col-md-6">
         <form asp-action="EditUser" asp-controller="Users" asp-route-id="@Model.Id" method="POST">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">#</div>
-                    </div>
-                    <input asp-for="UserName" class="form-control" />
-                </div>
+                <i class="bi bi-person-fill text-primary fs-3"></i>
+                <label asp-for="UserName" class="control-label text-primary mb-2 fs-3"></label>
+                <input asp-for="UserName" class="form-control text-light" />
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+            <div class="form-group mt-5">
+                <i class="bi bi-at text-primary fs-3"></i>
+                <label asp-for="Email" class="control-label text-primary mb-2  fs-3"></label>
+                <input asp-for="Email" class="form-control text-light" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <div class="col-md-6 offset-md-3">
-                    <input type="submit" value="Edit" class="btn btn-primary btn-block" />
+            <div class="form-group row">
+                <div class="w-100">
+                    <input type="submit" value="Edit" class=" w-100 mt-5 btn btn-primary btn-block" />
                 </div>
             </div>
         </form>

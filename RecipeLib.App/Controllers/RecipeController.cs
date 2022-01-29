@@ -44,7 +44,62 @@ public class RecipeController : Controller
         }
         return View(recipe);
     }
+    public async Task<IActionResult> Add()
+    {
+        _logger.LogInformation("Edit add view");
 
+        var categories = await _dbContext.Categories.ToListAsync();
+        return View("Add", new RecipeEditModel() { Recipe = new Recipe() { Name = "New recipe", Ingredients = new List<Ingredient>(), Method = new List<string>() }, Categories = categories });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(RecipeEditModel rem)
+    {
+        _logger.LogInformation("Create new recipe: " + rem.Recipe.Id);
+        string DefaultSmallImage = "/assets/recipe-img/butter-cookie-small.jpg";
+        string DefaultLargeImage = "/assets/recipe-img/butter-cookie-large.jpg";
+
+
+        List<Ingredient> DefaultIngredients = new List<Ingredient>(){
+            new Ingredient(){
+                name = "Large Egg",
+                ammount="1"
+            },
+            new Ingredient(){
+                name = "Peanut Butter",
+                ammount="250g"
+            },
+                        new Ingredient(){
+                name = "Erythritol",
+                ammount="50g"
+            },
+        };
+        List<string> DefaultMethod = new List<string>(){
+            "Preheat oven to 180°C",
+            "In a medium bowl combine all ingredients until thoroughly mixed",
+            "Scoop heaping one tablespoon-sized piece of dough into 12-15 balls. Place 2 inches apart on lined cookie sheets and flatten in a criss-cross with a fork",
+            "Bake for 12-15 minutes until edges of cookies are golden brown",
+            "Let cool completely before eating."
+        };
+
+        var rec = new Recipe()
+        {
+
+            Name = rem.Recipe.Name,
+            CategoryId = rem.Recipe.CategoryId,
+            ImgSmall = DefaultSmallImage,
+            ImgCard = DefaultLargeImage,
+            Ingredients = DefaultIngredients,
+            Method = DefaultMethod,
+            kcal = rem.Recipe.kcal,
+        };
+        rec.AuthorId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        await _dbContext.Recipes.AddAsync(rec);
+        await _dbContext.SaveChangesAsync();
+
+        ViewData["message"] = "Recipe added successfully.";
+        return LocalRedirect("/");
+    }
     public async Task<IActionResult> Edit(string id = "x")
     {
         _logger.LogInformation("Edit recipe view: " + id);
@@ -154,5 +209,11 @@ public class RecipeController : Controller
         var categories = _dbContext.Categories.ToList();
         recipe.Ingredients.Add(new Ingredient());
         return View("Edit", new RecipeEditModel() { Recipe = recipe, Categories = categories });
+    }
+
+    [HttpPost]
+    public ViewResult IngredientRowPartial()
+    {
+        return View("RecipeIngredientsRow");
     }
 }

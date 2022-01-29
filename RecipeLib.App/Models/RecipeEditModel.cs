@@ -10,6 +10,9 @@ namespace RecipeLib.Models
         public Recipe Recipe { get; set; }
         public List<Category> Categories { get; set; }
 
+        public Ingredient[] Ingredients { get; set; }
+
+        public string[] Method { get; set; }
         [Required]
         [DisplayName("Upload image for details")]
         public IFormFile ImageSmallUpload { get; set; }

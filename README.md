@@ -7,7 +7,6 @@
 
 ## Features
 
-- Xunit tested
 - Cookie authorization and authentication
 - SqlDb or mssqllocaldb
 - Responsive design
